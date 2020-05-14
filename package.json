@@ -1,0 +1,22 @@
+{
+  "name": "nodetube",
+  "version": "1.0.0",
+  "description": "Cloning Youtube with Vanilla and NodeJs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mememamumo/nodeTube.git"
+  },
+  "author": "Yuna Lee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mememamumo/nodeTube/issues"
+  },
+  "homepage": "https://github.com/mememamumo/nodeTube#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
