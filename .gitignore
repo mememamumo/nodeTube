@@ -113,3 +113,7 @@ package-lock.json
 uploads
 static
 build
+.env
+videos
+uploads
+static
