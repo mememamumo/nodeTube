@@ -6,7 +6,7 @@ block content
             .fileUpload
                 label(for="file") Video File
                 //- video/mp4,video/x-m4v,video/*
-                input(type="file", id="file", name="videoFile", required=true, accept="video/*")
+                input(type="file", id="file", name="videoFile", required=true, accept="video/mp4,video/x-m4v,video/*")
             input(type="text", placeholder="Title", name="title", required=true)
             textarea(name="description", placeholder="Description", required=true)
             input(type="submit", value="Upload Video")
