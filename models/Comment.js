@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 
 const CommentSchema = new mongoose.Schema({
+    name: String,
+    avatarUrl: String,
     text: {
         type: String,
         required: "File URL is required"
@@ -9,10 +11,10 @@ const CommentSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    video: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "video"
-    },
+    // video: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: "video"
+    // },
     creator: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"

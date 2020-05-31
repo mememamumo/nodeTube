@@ -55,9 +55,9 @@ export const postLogin = passport.authenticate('local',{
 export const githubLogin = passport.authenticate("github");
 
 export const githubLoginCallback = async (_, __, profile, cb) => {
-    console.log(profile, cb);
+    // console.log(profile, cb);
     const {
-        _json: { id, avatarUrl, name, email }
+        _json: { id, avatar_url: avatarUrl, name, email }
     } = profile;
     
     try {
@@ -122,7 +122,7 @@ export const postFacebookLogin = (req, res) => {
 export const kakaoLogin = passport.authenticate("kakao");
 
 export const kakaoLoginCallback = async (_, __, profile, done) => {
-    console.log(profile, done);
+    // console.log(profile, done);
     const {
         _json: {
             id,
@@ -168,7 +168,7 @@ export const naverLoginCallback = async (_, __, profile, done) => {
             profile_image
         }
     } = profile;
-    console.log(profile);
+    // console.log(profile);
 
     try {
         const user = await User.findOne({ naverId: id });
@@ -235,15 +235,24 @@ export const userDetail = async (req, res) => {
     } = req;
     try {
         const user = await User.findById(id).populate("videos");
-        console.log(user);
-        res.render("userDetail", {pageTitle: "User Detail"});
+        // console.log(user);
+        res.render("userDetail", {pageTitle: "User Detail", user });
     } catch (error) {
         res.redirect(routes.home);
     }
 };
 
-export const getMe = (req, res) => {
-    res.render("userDetail", { pageTitle: "User Detail", user:req.user })
+// export const getMe = (req, res) => {
+//     res.render("userDetail", { pageTitle: "User Detail", user:req.user })
+// };
+
+export const getMe = async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id).populate("videos");
+        res.render("userDetail", { pageTitle: "User Detail", user});
+    } catch (error) {
+        res.redirect(routes.home);
+    }
 };
 
 export const getEditProfile = (req, res) => res.render("editProfile", {pageTitle: "Edit Profile"});
@@ -259,16 +268,18 @@ export const postEditProfile = async (req, res) => {
                 name,
                 email,
                 avatarUrl: file ? file.path: req.user.avatarUrl
+                // avatarUrl: `/`+`${file ? file.path : req.user.avatarUrl}`
             }
         );
         req.redirect(routes.me);
     } catch (error) {
+        res.status(400);
         res.redirect(routes.editProfile);
     }
 };
 
 export const getChangePassword = (req, res) => {
-    res.render("changePassword", {pageTitle:"Change Password"});
+    res.render("changePassword", { pageTitle: "Change Password" });
 };
 
 export const postChangePassword = async (req, res) => {
@@ -289,7 +300,7 @@ export const postChangePassword = async (req, res) => {
         req.user.changePassword(oldPassword, newPassword);
         res.redirect(routes.me);
     } catch (error) {
-        res.status(200);
+        res.status(400);
         res.redirect(`/users/${routes.changePassword}`);
     }
 };

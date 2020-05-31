@@ -21,7 +21,7 @@ passport.use(
         clientSecret: process.env.GH_SECRET,
         callbackURL: `http://localhost:4000${routes.githubCallback}`
     },
-    githubLoginCallback
+        githubLoginCallback
     )
 );
 
@@ -34,7 +34,7 @@ passport.use(
         profileFields: ["id", "displayName", "photos", "email"],
         scope: ["public_profile", "email"]
     },
-    facebookLoginCallback
+        facebookLoginCallback
     )
 );
 
@@ -44,7 +44,7 @@ passport.use(
         clientSecret: process.env.KAKAO_SECRET,
         callbackURL: `http://localhost:4000${routes.kakaoCallback}`
     },
-    kakaoLoginCallback
+        kakaoLoginCallback
     )
 );
 
@@ -54,7 +54,7 @@ passport.use(
         clientSecret: process.env.NAVER_SECRET,
         callbackURL: `http://localhost:4000${routes.naverCallback}`
     },
-    naverLoginCallback
+        naverLoginCallback
     )
 );
 
@@ -64,12 +64,12 @@ passport.use(
         clientSecret: process.env.GOOGLE_SECRET,
         callbackURL: `http://localhost:4000${routes.googleCallback}`
     },
-    googleLoginCallback
+        googleLoginCallback
     )
 );
 
-// passport.serializeUser(User.serializeUser());
-// passport.deserializeUser(User.deserializeUser());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
-passport.serializeUser((user,done) => done(null, user));
-passport.deserializeUser((user, done) => done(null, user));
+// passport.serializeUser((user,done) => done(null, user));
+// passport.deserializeUser((user, done) => done(null, user));

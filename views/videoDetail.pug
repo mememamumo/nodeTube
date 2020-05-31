@@ -1,5 +1,5 @@
 extends layouts/main
-include partials/videoPlayer
+include mixins/videoPlayer
 
 block content
     .video-detail__container
@@ -11,35 +11,26 @@ block content
                 a(href=routes.editVideo(video.id))
                     button Edit video
             h5.video__title=video.title
+            p.video__description=video.description
             if video.views === 1
                 span.video__views 1 view
             else 
                 span.video__views #{video.views} views
             .video__author
-                a(href=routes.userDetail(video.creator.id))
-                    span.round.sm
-                        img.u-avatar(src=video.creator.avatarUrl)
-                    span.name=video.creator.name
-            p.video__description=video.description
+                |Uploaded by 
+                a(href=routes.userDetail(video.creator.id))=video.creator.name
         .video__comments
             if video.comments.length === 1
                 span.video__comment-number
-                    span#jsCommentNumber.comment-number 1
-                    | comment
+                    span#jsCommentNumber 1
+                    |  comment
             else
                 span.video__comment-number
-                    span#jsCommentNumber.comment-number=video.comments.length
-                    | comment
+                    span#jsCommentNumber=video.comments.length
+                    |  comments
             form.add__comment#jsAddComment
                 input(type="text", placeholder="Add a comment")
-            ul.video__comment-list#jsCommentList
+            ul.video__comments-list#jsCommentList
                 each comment in video.comments.reverse()
                     li
-                        .comment__content
-                            span.round.sm
-                                img.u-avatar(src=comment.creator.avatarUrl)
-                            .wrap
-                                p.u-name=comment.creator.name
-                                div.jsComment=comment.text
-                        if loggedUser && comment.creator.id === loggedUser.id
-                            button.comment__remove(id=`${comment.id}`) ❌
+                        span=comment.text

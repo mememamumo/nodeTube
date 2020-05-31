@@ -1,11 +1,7 @@
 import routes from "../routes";
 import Video from "../models/Video";
+import User from "../models/User";
 import Comment from "../models/Comment";
-
-// export const home = (req, res) => {
-//     res.render("home", {pageTitle: "Home", videos});
-//     console.log(videos);
-// };
 
 export const home = async (req, res) => {
     try {
@@ -33,25 +29,8 @@ export const search = async (req, res) => {
     res.render("search", { pageTitle: "Search", searchingBy, videos});
 };
 
-export const videoDetail = async (req, res) => {
-    // res.render("videoDetail", { pageTitle: video.title, video });
-    console.log(req.params);
-    const {
-        params: { id }
-    } = req;
-
-    try {
-        const video = await (await Video.findById(id).populate("creator").populated("comment"));
-        // console.log(video);
-        res.render("videoDetail", { pageTitle: video.title, video });
-    } catch (error) {
-        console.log(error);
-        res.redirect(routes.home);
-    }
-};
-
 export const getUpload = (req, res) => {
-    res.render("upload", {pageTitle: "Upload"});
+    res.render("upload", { pageTitle: "Upload" });
 };
 
 export const postUpload = async (req, res) => {
@@ -70,11 +49,26 @@ export const postUpload = async (req, res) => {
         description,
         creator: req.user.id
     });
+    console.log(req.user);
 
-    console.log(newVideo);
-    // 임시로 막아두고, console.log test
-    // console - originalname, encoding, mimetype, description, filename, *path, size 를 확인 할 수 있음.
+    req.user.videos.push(newVideo.id);
+    req.user.save();
     res.redirect(routes.videoDetail(newVideo.id));
+};
+
+export const videoDetail = async (req, res) => {
+    const {
+      params: { id }
+    } = req;
+    try {
+      const video = await Video.findById(id)
+        .populate("creator");
+        // .populate("comments")
+      res.render("videoDetail", { pageTitle: video.title, video });
+      console.log(video);
+    } catch (error) {
+      res.redirect(routes.home);
+    }
 };
 
 export const getEditVideo = async (req, res) => {
@@ -96,7 +90,7 @@ export const getEditVideo = async (req, res) => {
 
 export const postEditVideo = async (req, res) => {
     const {
-        parmas: { id },
+        params: { id },
         body: {
             title,
             description
@@ -124,7 +118,7 @@ export const deleteVideo = async (req, res) => {
 
     try {
         const video = await Video.findById(id);
-        if(video.creator !== req.user.id) {
+        if(String(video.creator) !== req.user.id) {
             throw Error();
         } else {
             await Video.findOneAndRemove({_id:id});
