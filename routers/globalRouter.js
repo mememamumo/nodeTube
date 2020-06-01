@@ -1,6 +1,6 @@
 import express from "express";
-import routes from "../routes";
 import passport from "passport";
+import routes from "../routes";
 import { 
     home, 
     search 
@@ -23,7 +23,7 @@ import {
     postGoogleLogin,
     getMe
 } from "../controllers/userController";
-import { onlyPublic } from "../middlewares";
+import { onlyPublic, onlyPrivate } from "../middlewares";
 
 const globalRouter = express.Router();
 
@@ -35,7 +35,7 @@ globalRouter.get(routes.home, home);
 globalRouter.get(routes.login, onlyPublic, getLogin);
 globalRouter.post(routes.login, onlyPublic, postLogin);
 
-globalRouter.get(routes.logout, logout);
+globalRouter.get(routes.logout, onlyPrivate, logout);
 globalRouter.get(routes.search, search);
 
 //Github
@@ -74,7 +74,6 @@ globalRouter.get(
 	passport.authenticate('google', { failureRedirect: "/login" }),
 	postGoogleLogin
 );
-
 
 globalRouter.get(routes.me, getMe);
 

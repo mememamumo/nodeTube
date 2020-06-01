@@ -229,6 +229,22 @@ export const logout = (req, res) => {
     res.redirect(routes.home);
 };
 
+// export const getMe = (req, res) => {
+//     res.render("userDetail", { pageTitle: "User Detail", user:req.user })
+// };
+
+export const getMe = async (req, res) => {
+    const {
+        params: { id }
+    } = req;
+    try {
+        const user = await User.findById(req.user.id).populate("videos");
+        res.render("userDetail", { pageTitle: "User Detail", user});
+    } catch (error) {
+        res.redirect(routes.home);
+    }
+};
+
 export const userDetail = async (req, res) => {
     const {
         params: { id }
@@ -242,24 +258,13 @@ export const userDetail = async (req, res) => {
     }
 };
 
-// export const getMe = (req, res) => {
-//     res.render("userDetail", { pageTitle: "User Detail", user:req.user })
-// };
-
-export const getMe = async (req, res) => {
-    try {
-        const user = await User.findById(req.user.id).populate("videos");
-        res.render("userDetail", { pageTitle: "User Detail", user});
-    } catch (error) {
-        res.redirect(routes.home);
-    }
+export const getEditProfile = (req, res) => {
+    res.render("editProfile", { pageTitle: "Edit Profile" });
 };
-
-export const getEditProfile = (req, res) => res.render("editProfile", {pageTitle: "Edit Profile"});
 
 export const postEditProfile = async (req, res) => {
     const {
-        body: { name, eamil },
+        body: { name, email },
         file
     } = req;
     try {
@@ -267,14 +272,16 @@ export const postEditProfile = async (req, res) => {
             req.user.id, {
                 name,
                 email,
-                avatarUrl: file ? file.path: req.user.avatarUrl
+                avatarUrl: file ? file.path : req.user.avatarUrl
                 // avatarUrl: `/`+`${file ? file.path : req.user.avatarUrl}`
             }
         );
-        req.redirect(routes.me);
+        res.redirect(routes.me);
     } catch (error) {
         res.status(400);
-        res.redirect(routes.editProfile);
+        // alert) error 났을 때, alert 알림
+        console.log("안돼!!!!");
+        res.redirect(`/users` + routes.editProfile);
     }
 };
 

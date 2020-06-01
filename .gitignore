@@ -115,5 +115,5 @@ static
 build
 .env
 videos
-uploads
-static
+upload
+avatars
