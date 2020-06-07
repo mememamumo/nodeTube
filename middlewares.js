@@ -1,8 +1,8 @@
 import multer from "multer";
 import routes from "./routes";
 
-const multerVideo = multer({dest: "upload/videos/"});
-const multerAvatar = multer({dest: "upload/avatars/"});
+const multerVideo = multer({dest: "uploads/mango/"});
+const multerAvatar = multer({dest: "uploads/avatars/"});
 
 // .single() is that uploading only one file.
 // 'videoFile' is name of HTML form tag.
@@ -31,6 +31,6 @@ export const onlyPrivate = (req, res, next) => {
     if (req.user) {
         next();
     } else {
-        res.redirect(routes.home);
+        res.redirect(routes.login);
     }
 };

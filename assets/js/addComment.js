@@ -34,23 +34,23 @@ const deleteBtn = async (event, comment) => {
 
 const addComment = (comment, commentData) => {
   const data = commentData;
-  console.log(data);
+  // console.log(commentData);
   const li = document.createElement("li");
   // <img class="u-avatar" src=${}></img>
   // <p class="u-name">${}</p>
   const newComment = `
     <div class="comment__content">
       <span class="round sm">
-        <img class="u-avatar" src=${data.avatarUrl}></img>
+        <img class="u-avatar" src=${data.data.commentData.avatarUrl}></img>
       </span>
       <div class="wrap">
-        <p class="u-name">${data.name}</p>
+        <p class="u-name">${data.data.commentData.name}</p>
         <div class="jsComment">${comment}</div>
       </div>
     </div>
   `;
   const delBtn = document.createElement("button");
-  delBtn.id = String(data._id);
+  delBtn.id = String(data.data.commentData._id);
   delBtn.className = "comment__remove";
   delBtn.innerHTML = "❌";
   delBtn.addEventListener("click", () => {
@@ -69,7 +69,7 @@ const sendComment = async (comment) => {
       url: `/api/${videoId}/comment`,
       method: "POST",
       data: {
-          comment
+        comment
       }
   });
   if (response.status === 200) {

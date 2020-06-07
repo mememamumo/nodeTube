@@ -49,7 +49,7 @@ export const postUpload = async (req, res) => {
         description,
         creator: req.user.id
     });
-    console.log(req.user);
+    // console.log(newVideo);
 
     req.user.videos.push(newVideo.id);
     req.user.save();
@@ -62,8 +62,8 @@ export const videoDetail = async (req, res) => {
     } = req;
     try {
       const video = await Video.findById(id)
-        .populate("creator");
-        // .populate("comments")
+        .populate("creator")
+        .populate("comments");
       res.render("videoDetail", { pageTitle: video.title, video });
       console.log(video);
     } catch (error) {
@@ -132,9 +132,9 @@ export const postRegisterView = async (req, res) => {
     const {
         params: { id }
     } = req;
+
     try {
         const video = await Video.findById(id);
-        // models/Video.js의 video의 views
         video.views += 1;
         video.save();
         res.status(200);
@@ -144,6 +144,41 @@ export const postRegisterView = async (req, res) => {
         res.end();
     }
 };
+
+export const getComments = async (req, res) => {
+    const {
+      params: { id },
+      user
+    } = req;
+    let comments = null;
+    try {
+      const video = await Video.findById(id)
+      .populate({
+        path: "comment",
+        populate: {
+          model: "User",
+          path: "creator"
+        }
+      })
+      .populate({
+        path: "comments",
+        populate: {
+          model: "Comment",
+          path: "reComment",
+          populate: {
+            model: "User",
+            path: "creator"
+          }
+        }
+      });
+      console.log(video);
+      comments = video.comments;
+    } catch (error) {
+      res.status(400);
+    } finally {
+      res.json(comments.reverse());
+    }
+  };
 
 //Add Comment
 export const postAddComment = async (req, res) => {
@@ -156,11 +191,15 @@ export const postAddComment = async (req, res) => {
         const video = await Video.findById(id);
         const newComment = await Comment.create({
             text: comment,
-            creator: user.id
+            creator: user.id,
+            avatarUrl: user.avatarUrl,
+            name: user.name
         });
         video.comments.push(newComment._id);
         video.save();
         res.send({commentData:newComment});
+        // console.log(video);
+        // console.log("newComment", newComment);
     } catch (error) {
         res.status(400);
     } finally {

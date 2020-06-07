@@ -33,4 +33,11 @@ block content
             ul.video__comments-list#jsCommentList
                 each comment in video.comments.reverse()
                     li
-                        span=comment.text
+                        .comment__content
+                            span.round.sm
+                                img.u-avatar(src=comment.avatarUrl)
+                            .wrap
+                                p.u-name=comment.name
+                                div.jsComment=comment.text
+                        if loggedUser && comment.creator.toString() === loggedUser.id.toString()
+                            button.comment__remove(id=`${comment._id}`) 엑스
