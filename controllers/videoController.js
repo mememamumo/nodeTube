@@ -6,7 +6,7 @@ import Comment from "../models/Comment";
 export const home = async (req, res) => {
     try {
         const videos = await Video.find({}).sort({_id:-1});
-        // console.log(videos);
+        console.log(videos);
         res.render("home", {pageTitle: "Home", videos})
     } catch (error) {
         console.log(error);
@@ -58,14 +58,15 @@ export const postUpload = async (req, res) => {
 
 export const videoDetail = async (req, res) => {
     const {
-      params: { id }
+      params: { id },
+      user
     } = req;
     try {
       const video = await Video.findById(id)
         .populate("creator")
         .populate("comments");
-      res.render("videoDetail", { pageTitle: video.title, video });
-      console.log(video);
+      res.render("videoDetail", { pageTitle: video.title, video, user });
+    //   console.log(user);
     } catch (error) {
       res.redirect(routes.home);
     }
@@ -171,7 +172,7 @@ export const getComments = async (req, res) => {
           }
         }
       });
-      console.log(video);
+    //   console.log(video);
       comments = video.comments;
     } catch (error) {
       res.status(400);

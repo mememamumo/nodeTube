@@ -18,7 +18,8 @@ block content
                 span.video__views #{video.views} views
             .video__author
                 a(href=routes.userDetail(video.creator.id))
-                    img.u-avatar(src=video.creator.avatarUrl)
+                    span.round.sm
+                        img.u-avatar(src=video.creator.avatarUrl)
                     span.u-name=video.creator.name
         .video__comments
             if video.comments.length === 1
@@ -30,8 +31,8 @@ block content
                     span#jsCommentNumber=video.comments.length
                     |  댓글
             .comment-user
-                
-                    //- img.u-avatar(src=comment.avatarUrl)
+                span.round.sm               
+                    img.u-avatar(src=user.avatarUrl)
             form.add__comment#jsAddComment
                 input(type="text", placeholder="Add a comment")
             ul.video__comments-list#jsCommentList
