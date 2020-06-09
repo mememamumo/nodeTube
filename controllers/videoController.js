@@ -206,3 +206,23 @@ export const postAddComment = async (req, res) => {
         res.end();
     }
 };
+
+export const postDeleteComment = async (req, res) => {
+    const {
+      params: { id },
+      user
+    } = req;
+    try {
+      const comment = await Comment.findById(id);
+      if (String(comment.creator) !== user.id) {
+        throw Error();
+      } else {
+        await Comment.findOneAndRemove({ _id: id });
+      }
+    } catch (error) {
+      console.log(error);
+      res.status(400);
+    } finally {
+      res.end();
+    }
+  };

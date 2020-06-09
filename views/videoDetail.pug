@@ -17,17 +17,21 @@ block content
             else 
                 span.video__views #{video.views} views
             .video__author
-                |Uploaded by 
-                a(href=routes.userDetail(video.creator.id))=video.creator.name
+                a(href=routes.userDetail(video.creator.id))
+                    img.u-avatar(src=video.creator.avatarUrl)
+                    span.u-name=video.creator.name
         .video__comments
             if video.comments.length === 1
                 span.video__comment-number
                     span#jsCommentNumber 1
-                    |  comment
+                    |  댓글
             else
                 span.video__comment-number
                     span#jsCommentNumber=video.comments.length
-                    |  comments
+                    |  댓글
+            .comment-user
+                
+                    //- img.u-avatar(src=comment.avatarUrl)
             form.add__comment#jsAddComment
                 input(type="text", placeholder="Add a comment")
             ul.video__comments-list#jsCommentList
@@ -40,4 +44,4 @@ block content
                                 p.u-name=comment.name
                                 div.jsComment=comment.text
                         if loggedUser && comment.creator.toString() === loggedUser.id.toString()
-                            button.comment__remove(id=`${comment._id}`) 엑스
+                            button.comment__remove(id=`${comment._id}`) ❌

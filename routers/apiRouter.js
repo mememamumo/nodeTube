@@ -14,6 +14,6 @@ apiRouter.post(routes.registerView, postRegisterView);
 apiRouter.post(routes.addComment, postAddComment);
 apiRouter.get(routes.addComment, getComments);
 // apiRouter.post(routes.latestComment, postLatestComment);
-// apiRouter.post(routes.deleteComment, postDeleteComment);
+apiRouter.post(routes.deleteComment, postDeleteComment);
 
 export default apiRouter;
