@@ -7,6 +7,9 @@ const fullScrnBtn = document.getElementById("jsFullScreen");
 const currentTime = document.getElementById("currentTime");
 const totalTime = document.getElementById("totalTime");
 
+const progress = document.querySelector(".videoPlayer__progress");
+const progressBar = document.querySelector(".progress__filled");
+
 const registerView = () => {
     const videoId = window.location.href.split("/videos/")[1];
     fetch(`/api/${videoId}/view`, {
@@ -24,10 +27,6 @@ function handlePlayClick() {
         playBtn.innerHTML = `<i class="fas fa-play"></i>`;
         return false;
     } 
-}
-
-function handleVideoClick() {
-    
 }
 
 function handleVolumeClick() {
@@ -122,11 +121,28 @@ function handleDrag(event) {
     }
 }
 
+function handleProgress() {
+    const percent = (videoPlayer.currentTime / videoPlayer.duration) * 100;
+    progressBar.style.flexBasis = `${percent}%`;
+}
 
+videoPlayer.addEventListener('timeupdate', handleProgress);
+
+function scrub(e) {
+    const scrubTime = (e.offsetX / progress.offsetWidth) * videoPlayer.duration;
+    videoPlayer.currentTime = scrubTime;
+}
+
+let mousedown = false;
+progress.addEventListener('click', scrub);
+progress.addEventListener('mousemove', (e) => mousedown && scrub(e));
+progress.addEventListener('mousedown', () => mousedown = true);
+progress.addEventListener('mouseup', () => mousedown = false);
 
 function init() {
     videoPlayer.volume = 0.5;
     playBtn.addEventListener("click", handlePlayClick);
+    videoPlayer.addEventListener("click", handlePlayClick);
     volumeBtn.addEventListener("click", handleVolumeClick);
     volumeRange.addEventListener("input", handleDrag);
     fullScrnBtn.addEventListener("click", goFullScreen);

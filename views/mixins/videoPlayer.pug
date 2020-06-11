@@ -2,15 +2,17 @@ mixin videoPlayer(video = {})
     .videoPlayer#jsVideoPlayer
         //- autoplay
         //- video(src=`/${video.src}`)
-        //- video(src=`/${video.src}`, autoplay)
-        video(autoplay)
+        //- video(src=`/${video.src}`, autoplay, playsinline)
+        video
             source(src=`/${video.src}`, type="video/mp4")
             source(src=`/${video.src}`)
             span 현재 사용하고 있는 브라우저는 비디오 태그를 지원하지 않습니다.
+        .videoPlayer__progress
+            .progress__filled
         .videoPlayer__controls
             .videoPlayer__column
                 span#jsPlayButton
-                    i.fas.fa-pause
+                    i.fas.fa-play
             .videoPlayer__column
                 span#jsVolumeBtn
                     i.fas.fa-volume-up
