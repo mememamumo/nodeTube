@@ -1,5 +1,6 @@
 extends layouts/main
 include mixins/videoPlayer
+include mixins/modalBlock
 
 block content
     .video-detail__container
@@ -38,8 +39,12 @@ block content
                     else if loggedUser == null
                         //- img.u-avatar.default(src=)
                         span 로그아웃 로그아웃 로그아웃 로그아웃 일 때,
-            form.add__comment#jsAddComment
-                input(type="text", placeholder="Add a comment")
+            if loggedUser            
+                form.add__comment#jsAddComment
+                    input(type="text", placeholder="Add a comment")
+            else if loggedUser == null
+                form.add__comment#jsUserNull
+                    input(type="text", placeholder="로그인을 해주세요.")
             ul.video__comments-list#jsCommentList
                 each comment in video.comments.reverse()
                     li
@@ -52,3 +57,12 @@ block content
                             div.jsComment=comment.text
                         if loggedUser && comment.creator.toString() === loggedUser.id.toString()
                             button.comment__remove(id=`${comment._id}`) ❌
+    +modalBlock({
+        type: "info",
+        text: "Sign in to make your opinion.",
+        link1: routes.login,
+        linkText1: "Login",
+        link2: routes.join,
+        linkText2: "Join",
+        close: "닫기"
+    })

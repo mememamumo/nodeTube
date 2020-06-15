@@ -1,3 +1,5 @@
+include ../mixins/message
+
 doctype html
 html
     head
@@ -5,7 +7,6 @@ html
         link(rel="stylesheet", href="/static/styles.css")
         script(src="https://kit.fontawesome.com/f3cf84b30a.js", crossorigin="anonymous")
     body
-        include ../mixins/message
         if messages.error
             +message ({
                 type: "error",
@@ -21,6 +22,7 @@ html
                 type: "success",
                 text: messages.success
             })
+
         include ../partials/header
         main
             block content

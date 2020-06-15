@@ -1,0 +1,12 @@
+mixin modalBlock(modal = {})
+    .modal.jsModal.hidden(class=modal.type)
+        .modal__overlay
+        .modal__content#jsModalContent
+            h2.modal__tit=modal.title
+            .modal__txt=modal.text
+            .modal__btn-wrap
+                a(href=modal.link1)
+                    button=modal.linkText1
+                a(href=modal.link2)
+                    button=modal.linkText2
+                button.modal__close=modal.close

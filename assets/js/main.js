@@ -3,3 +3,4 @@ import "./videoPlayer";
 import "./addComment";
 import "./deleteComment";
 import "./hoverVideo";
+import "./modal";
