@@ -20,6 +20,7 @@ export const postJoin = async (req, res, next) => {
 
     if(password !== password2) {
         res.status(400);
+        req.flash("error", "비밀번호가 맞지 않습니다.")
         res.render("join", {pageTitle: "Join"});
     } else {
         try {
@@ -36,23 +37,22 @@ export const postJoin = async (req, res, next) => {
     }
 };
 
-// export const login = (req, res) => res.render("login");
-
 export const getLogin = (req, res) => {
     res.render("Login", {pageTitle: "Log In"});
 };
 
-// export const postLogin = (req, res) => {
-//     res.redirect(routes.home);
-// };
-
 export const postLogin = passport.authenticate('local',{
     failureRedirect: routes.login,
-    successRedirect: routes.home
+    successRedirect: routes.home,
+    successFlash: "Welcome!",
+    failureFlash: "로그인 할 수 없습니다. 이메일 또는 비밀번호를 확인해주세요."
 });
 
 //Github
-export const githubLogin = passport.authenticate("github");
+export const githubLogin = passport.authenticate("github",{
+    successFlash: "Welcome!",
+    failureFlash: "Can't log in at this time."
+});
 
 export const githubLoginCallback = async (_, __, profile, cb) => {
     // console.log(profile, cb);
@@ -84,7 +84,10 @@ export const postGithubLogin = (req, res) => {
 };
 
 //Facebook
-export const facebookLogin = passport.authenticate("facebook");
+export const facebookLogin = passport.authenticate("facebook",{
+    successFlash: "Welcome!",
+    failureFlash: "Can't log in at this time."
+});
 
 export const facebookLoginCallback = async (_, __, profile, cb) => {
     const {
@@ -119,7 +122,10 @@ export const postFacebookLogin = (req, res) => {
 };
 
 //Kakao
-export const kakaoLogin = passport.authenticate("kakao");
+export const kakaoLogin = passport.authenticate("kakao",{
+    successFlash: "Welcome!",
+    failureFlash: "Can't log in at this time."
+});
 
 export const kakaoLoginCallback = async (_, __, profile, done) => {
     // console.log(profile, done);
@@ -157,7 +163,10 @@ export const postKakaoLogin = (req, res) => {
 };
 
 //Naver
-export const naverLogin = passport.authenticate("naver");
+export const naverLogin = passport.authenticate("naver",{
+    successFlash: "Welcome!",
+    failureFlash: "Can't log in at this time."
+});
 
 export const naverLoginCallback = async (_, __, profile, done) => {
     const {
@@ -193,7 +202,11 @@ export const postNaverLogin = (req, res) => {
 };
 
 //Google
-export const googleLogin = passport.authenticate("google", {scope: ["profile"]});
+export const googleLogin = passport.authenticate("google",{
+    scope: ["profile"],
+    successFlash: "Welcome!",
+    failureFlash: "Can't log in at this time."
+});
 
 export const googleLoginCallback = async (_, __, profile, done) => {
     const {
@@ -226,6 +239,7 @@ export const postGoogleLogin = (req, res) => {
 
 export const logout = (req, res) => {
     req.logout();
+    req.flash("info", "로그아웃 되었습니다. 다음에 또 봬요!")
     res.redirect(routes.home);
 };
 
@@ -251,10 +265,11 @@ export const userDetail = async (req, res) => {
     } = req;
     try {
         const user = await User.findById(id).populate("videos");
-        console.log(user);
+        // console.log("user", user);
         res.render("userDetail", {pageTitle: "User Detail", user });
     } catch (error) {
         console.log(error);
+        req.flash("error", "유저를 찾을 수 없습니다.")
         res.redirect(routes.home);
     }
 };
@@ -277,11 +292,12 @@ export const postEditProfile = async (req, res) => {
                 // avatarUrl: `/`+`${file ? file.path : req.user.avatarUrl}`
             }
         );
+        req.flash("success", "프로필 수정 완료!")
         res.redirect(routes.me);
     } catch (error) {
         res.status(400);
-        // alert) error 났을 때, alert 알림
-        console.log("안돼!!!!");
+        console.log(error);
+        req.flash("error", "프로필을 수정할 수 없습니다.")
         res.redirect(`/users` + routes.editProfile);
     }
 };
@@ -301,6 +317,7 @@ export const postChangePassword = async (req, res) => {
     try {
         if (newPassword !== newPassword1) {
             res.status(400);
+            req.flash("error", "비밀번호가 맞지 않습니다.")
             res.redirect(`/users/${routes.changePassword}`);
             return;
         }
@@ -309,6 +326,7 @@ export const postChangePassword = async (req, res) => {
         res.redirect(routes.me);
     } catch (error) {
         res.status(400);
+        req.flash("error", "비밀번호를 변경할 수 없습니다.")
         res.redirect(`/users/${routes.changePassword}`);
     }
 };

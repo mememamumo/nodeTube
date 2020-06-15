@@ -30,19 +30,25 @@ block content
                 span.video__comment-number
                     span#jsCommentNumber=video.comments.length
                     |  댓글
+
             .comment-user
-                span.round.sm               
-                    img.u-avatar(src=user.avatarUrl)
+                span.round.sm
+                    if loggedUser          
+                        img.u-avatar(src=user.avatarUrl)
+                    else if loggedUser == null
+                        //- img.u-avatar.default(src=)
+                        span 로그아웃 로그아웃 로그아웃 로그아웃 일 때,
             form.add__comment#jsAddComment
                 input(type="text", placeholder="Add a comment")
             ul.video__comments-list#jsCommentList
                 each comment in video.comments.reverse()
                     li
-                        .comment__content
+                        a.comment__content(href=routes.userDetail(comment.creator))
                             span.round.sm
                                 img.u-avatar(src=comment.avatarUrl)
-                            .wrap
+                        .wrap
+                            a.comment__content(href=routes.userDetail(comment.creator))
                                 p.u-name=comment.name
-                                div.jsComment=comment.text
+                            div.jsComment=comment.text
                         if loggedUser && comment.creator.toString() === loggedUser.id.toString()
                             button.comment__remove(id=`${comment._id}`) ❌

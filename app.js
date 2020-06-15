@@ -2,6 +2,7 @@ import express from "express";
 import morgan from "morgan";
 import helmet from "helmet";
 import path from "path";
+import flash from "express-flash";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import passport from "passport";
@@ -42,6 +43,7 @@ app.use(
         store: new CokieStore({mongooseConnection: mongoose.connection})
     })
 );
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 

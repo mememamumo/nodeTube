@@ -126,18 +126,10 @@ function handleProgress() {
     progressBar.style.flexBasis = `${percent}%`;
 }
 
-videoPlayer.addEventListener('timeupdate', handleProgress);
-
 function scrub(e) {
     const scrubTime = (e.offsetX / progress.offsetWidth) * videoPlayer.duration;
     videoPlayer.currentTime = scrubTime;
 }
-
-let mousedown = false;
-progress.addEventListener('click', scrub);
-progress.addEventListener('mousemove', (e) => mousedown && scrub(e));
-progress.addEventListener('mousedown', () => mousedown = true);
-progress.addEventListener('mouseup', () => mousedown = false);
 
 function init() {
     videoPlayer.volume = 0.5;
@@ -148,6 +140,15 @@ function init() {
     fullScrnBtn.addEventListener("click", goFullScreen);
     videoPlayer.addEventListener("loadedmetadata", setTotalTime);
     videoPlayer.addEventListener("ended", handleEnded);
+
+    playBtn.addEventListener('timeupdate', handleProgress);
+    videoPlayer.addEventListener('timeupdate', handleProgress);
+
+    let mousedown = false;
+    progress.addEventListener('click', scrub);
+    progress.addEventListener('mousemove', (e) => mousedown && scrub(e));
+    progress.addEventListener('mousedown', () => mousedown = true);
+    progress.addEventListener('mouseup', () => mousedown = false);
 }
 
 if (videoContainer) {

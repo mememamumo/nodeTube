@@ -6,7 +6,7 @@ import Comment from "../models/Comment";
 export const home = async (req, res) => {
     try {
         const videos = await Video.find({}).sort({_id:-1});
-        console.log(videos);
+        // console.log(videos);
         res.render("home", {pageTitle: "Home", videos})
     } catch (error) {
         console.log(error);
@@ -66,7 +66,7 @@ export const videoDetail = async (req, res) => {
         .populate("creator")
         .populate("comments");
       res.render("videoDetail", { pageTitle: video.title, video, user });
-    //   console.log(user);
+      console.log(video);
     } catch (error) {
       res.redirect(routes.home);
     }
