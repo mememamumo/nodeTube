@@ -6,8 +6,11 @@ mixin videoBlock(video = {})
                 source(src=`/${video.videoFile}`, type="video/mp4")
                 source(src=`/${video.videoFile}`)
                 span 현재 사용하고 있는 브라우저는 비디오 태그를 지원하지 않습니다.
-            h4.videoBlock__title=video.title
-            if video.views === 1
-                h6.videoBlock__views 1 view
-            else
-                h6.videoBlock__views #{video.views} views
+            h4.videoBlock__title.tita=video.title
+            .views__wrap
+                if video.views === 1
+                    i.far.fa-eye.clg
+                    span.videoBlock__views.num.lt 1 
+                else
+                    i.far.fa-eye.clg
+                    span.videoBlock__views.num.lt #{video.views}

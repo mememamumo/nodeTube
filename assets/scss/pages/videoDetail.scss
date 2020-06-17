@@ -1,0 +1,48 @@
+.video-detail__container {
+    width: 100%;
+    max-width: 1016px;
+    margin: 0 auto;
+    padding: 0 0 20px;
+    position: relative;
+    z-index: 7;
+    .video__info {
+        position: relative;
+        margin-top: 10px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid $pale-gray;
+        .edit-btn {
+            position: absolute;
+            top: 20px;
+            right: 0;
+        }
+        .views__wrap {
+            display: inline-block;
+            padding: 0 5px;
+            .video__views {
+                margin-left: 5px;
+            }
+        }
+        .upload__date {
+            display: inline-block;
+            &::before {
+                content: ", ";
+            }
+        }
+        .video__author {
+            margin-top: 10px;
+            a {
+                span {
+                    vertical-align: middle;
+                }
+                .u-name {
+                    margin-left: 8px;
+                    margin-top: 10px;
+                }
+            }
+        }
+        .video__description {
+            margin-top: 8px;
+        }
+        
+    }
+}

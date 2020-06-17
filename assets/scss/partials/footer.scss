@@ -1,0 +1,17 @@
+.footer {
+    width: 100%;
+    max-width: 1016px;
+    margin: 0 auto;
+    padding: 50px 0 40px;
+    position: relative;
+    z-index: 9;
+    .footer__icon {
+        text-align: center;
+        color: $light-gray;
+    }
+    .footer__text {
+        text-align: center;
+        color: $dark-gray;
+        margin-top: 10px;
+    }
+}

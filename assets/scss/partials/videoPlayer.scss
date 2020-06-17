@@ -1,7 +1,8 @@
 .videoPlayer {
     position: relative;
     width: 100%;
-    max-width: 850px;
+    max-width: 1016px;
+    z-index: 7;
     &:hover {
         .videoPlayer__controls {
         opacity: 1;
@@ -64,7 +65,7 @@
             input {
                 background-color: rgba(0, 0, 0, 0.5);
                 &::-webkit-slider-runnable-track {
-                background-color: $grey;
+                background-color: $gray;
                 height: 5px;
                 }
                 &::-webkit-slider-thumb {

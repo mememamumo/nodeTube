@@ -9,14 +9,14 @@ block content
             //- else if loggedUser == null
             //-     img.avatar(src=`${user.avatarUrl.substr("6,str.length")}`)
             img.avatar(src=user.avatarUrl)
-            h4.profile__username=user.name
+            h4.profile__username.tita=user.name
             if loggedUser !== null
                 if user.id === loggedUser.id
                     .user-profile__btns
                         a(href=`/users${routes.editProfile}`)
-                            button Edit Profile
+                            button.edit-btn Edit Profile
                         a(href=`/users${routes.changePassword}`)
-                            button Change Password
+                            button.edit-btn Change Password
         .home-video
             each item in user.videos
                 +videoBlock({

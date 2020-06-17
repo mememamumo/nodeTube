@@ -9,52 +9,57 @@ block content
         })
         .video__info
             if loggedUser && video.creator.id === loggedUser.id
-                a(href=routes.editVideo(video.id))
+                a.edit-btn(href=routes.editVideo(video.id))
                     button Edit video
-            h5.video__title=video.title
-            p.video__description=video.description
-            if video.views === 1
-                span.video__views 1 view
-            else 
-                span.video__views #{video.views} views
+            h2.video__title.titb.break=video.title
+            .views__wrap
+                if video.views === 1
+                    i.far.fa-eye.clg
+                    span.video__views.num 1
+                else
+                    i.far.fa-eye.clg
+                    span.video__views.num #{video.views}
+            .upload__date
+                span=`${dateFormatter(video.createdAt)}`
             .video__author
                 a(href=routes.userDetail(video.creator.id))
                     span.round.sm
                         img.u-avatar(src=video.creator.avatarUrl)
-                    span.u-name=video.creator.name
+                    span.u-name.txtb.st=video.creator.name
+            p.video__description.txta=video.description
         .video__comments
             if video.comments.length === 1
                 span.video__comment-number
-                    span#jsCommentNumber 1
-                    |  댓글
+                    span.txta.num#jsCommentNumber 1
+                    span Comment
             else
                 span.video__comment-number
-                    span#jsCommentNumber=video.comments.length
-                    |  댓글
-
-            .comment-user
-                span.round.sm
-                    if loggedUser          
-                        img.u-avatar(src=user.avatarUrl)
-                    else if loggedUser == null
-                        //- img.u-avatar.default(src=)
-                        span 로그아웃 로그아웃 로그아웃 로그아웃 일 때,
-            if loggedUser            
-                form.add__comment#jsAddComment
-                    input(type="text", placeholder="Add a comment")
-            else if loggedUser == null
-                form.add__comment#jsUserNull
-                    input(type="text", placeholder="로그인을 해주세요.")
+                    span.txta.num#jsCommentNumber=video.comments.length
+                    span Comments
+            .wrap
+                .comment-user
+                    span.round.sm
+                        if loggedUser          
+                            img.u-avatar(src=user.avatarUrl)
+                        else if loggedUser == null
+                            //- img.u-avatar.default(src=)
+                            span 로그아웃 로그아웃 로그아웃 로그아웃 일 때,
+                if loggedUser            
+                    form.add__comment#jsAddComment
+                        input(type="text", placeholder="Add a comment")
+                else if loggedUser == null
+                    form.add__comment#jsUserNull
+                        input(type="text", placeholder="로그인을 해주세요.")
             ul.video__comments-list#jsCommentList
                 each comment in video.comments.reverse()
                     li
-                        a.comment__content(href=routes.userDetail(comment.creator))
+                        a.comment__user(href=routes.userDetail(comment.creator))
                             span.round.sm
                                 img.u-avatar(src=comment.avatarUrl)
-                        .wrap
+                        .comment-wrap
                             a.comment__content(href=routes.userDetail(comment.creator))
-                                p.u-name=comment.name
-                            div.jsComment=comment.text
+                                p.u-name.txtb.st=comment.name
+                            div.comment__text.jsComment.txta=comment.text
                         if loggedUser && comment.creator.toString() === loggedUser.id.toString()
                             button.comment__remove(id=`${comment._id}`) ❌
     +modalBlock({

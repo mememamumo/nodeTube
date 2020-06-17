@@ -1,10 +1,10 @@
 header.header
     .header__wrapper
         .header__column
-            a(href=routes.home)
-                h1 TITLE
+            a.logo(href=routes.home)
+                i.fas.fa-cat.titc
         .header__column
-            form(action=routes.search, method="get")
+            form.search(action=routes.search, method="get")
                 input(type="text", placeholder="Search for term...", name="term")
         .header__column
             ul

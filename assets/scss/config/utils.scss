@@ -1,0 +1,84 @@
+.tita {
+    font-size: 24px;
+}
+
+.titb {
+    font-size: 36px;
+}
+
+.titc {
+    font-size: 40px;
+}
+
+.txta {
+    font-size: 14px;
+}
+
+.txtb {
+    font-size: 16px;
+}
+
+.num {
+    font-size: 14px;
+    color: $dark-gray;
+}
+
+.lt {
+    font-weight: 400;
+}
+
+.st {
+    font-weight: 700;
+}
+
+.break {
+    word-wrap: break-word;
+}
+
+.clg {
+    color: $light-gray;
+}
+
+.search {
+    input {
+        border: 1px solid white;
+        border-radius: 15px;
+        font-size: 14px;
+        padding: 6px 10px;
+    }
+}
+
+.edit-btn button {
+    border: 1px solid white;
+    background-color: white;
+    padding: 3px 5px;
+    border-radius: 3px;
+    &:hover {
+        color: white;
+        border: 1px solid $main;
+        background-color: $main;
+        transition: .3s;
+    }
+}
+
+.u-name {
+    display: inline-block;
+    line-height: 1;
+    padding: 0 0 1px;
+    &:hover {
+        border-bottom: 1px solid $black;
+    }
+}
+
+.round {
+    position: relative;
+    display:inline-block;
+    width:40px;
+    height:40px;
+    overflow: hidden;
+    border-radius: 13px;
+    img {
+        width:100%;
+        height:auto;
+    }
+}

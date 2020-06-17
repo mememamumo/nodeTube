@@ -2,15 +2,34 @@ html, body {
     height: 100%;
 }
 
-.round {
-    position: relative;
-    display:inline-block;
-    width:100px;
-    height:100px;
-    overflow: hidden;
-    border-radius: 50%;
-    img {
-        width:100%;
-        height:auto;
-    }
+body {
+    background-color: $bg-color;
+    color: $black;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,Helvetica,Meiryo,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+    font-size: 14px;
 }
+
+main::before {
+    content: " ";
+    position: fixed;
+    top: 0;
+    right: 0;
+    border-left: 100vw solid rgba(129, 168, 241, 0.24);
+    border-bottom: 150vw solid rgba(0,0,0,0);
+    border-top: 100vw solid transparent;
+    transform: scale(.9999);
+    z-index: 0;
+}
+
+main::after {
+    content: " ";
+    position: fixed;
+    top: -60vw;
+    right: -10vw;
+    border-left: 110vw solid rgba(255, 255, 198, 0.38);
+    border-bottom: 20vw solid transparent;
+    border-top: 90vw solid rgba(0,0,0,0);
+    z-index: -1;
+}
+
+

@@ -14,6 +14,7 @@ export const localsMiddleware = (req, res, next) => {
     res.locals.routes = routes;
     // res.locals.user = req.user || null;
     res.locals.loggedUser = req.user || null;
+    res.locals.dateFormatter = dateFormatter;
     // test
     // console.log(req.user);
     next();
@@ -33,4 +34,12 @@ export const onlyPrivate = (req, res, next) => {
     } else {
         res.redirect(routes.login);
     }
+};
+
+//date formatter
+export const dateFormatter = dateStr => {
+    const date = new Date(dateStr);
+    return `${date.getFullYear()}.${date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1}.${
+        date.getDate() < 10 ? `0${date.getDate()}` : date.getDate()
+        }`;
 };

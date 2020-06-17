@@ -1,0 +1,41 @@
+.header {
+    width: 100%;
+    max-width: 1016px;
+    margin: 0 auto;
+    padding: 50px 0 40px;
+    position: relative;
+    z-index: 8;
+    .header__wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .header__column {
+            .logo {
+                position: fixed;
+                top: 40px;
+                color: $main;
+                &:hover {
+                    color: $black;
+                    transition: .3s;
+                }
+            }
+            .search {
+                input {
+                    width: 300px;
+                }
+            }
+            ul {
+                display: flex;
+                li {
+                    a {
+                        padding: 2px 5px;
+                    }
+                    a:hover {
+                        background-color: $yellow;
+                        transition: .25s;
+                    }
+                }
+            }
+        }
+    }
+}

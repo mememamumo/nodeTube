@@ -40,14 +40,16 @@ const addComment = (comment, commentData) => {
   // <img class="u-avatar" src=${}></img>
   // <p class="u-name">${}</p>
   const newComment = `
-    <div class="comment__content">
+    <div class="comment__user">
       <span class="round sm">
         <img class="u-avatar" src=${data.data.commentData.avatarUrl}>
       </span>
-      <div class="wrap">
-        <p class="u-name">${data.data.commentData.name}</p>
-        <div class="jsComment">${comment}</div>
+    </div>
+    <div class="comment-wrap">
+      <div class="comment__content">
+        <p class="u-name txtb st">${data.data.commentData.name}</p>
       </div>
+      <div class="comment__text jsComment">${comment}</div>
     </div>
   `;
   const delBtn = document.createElement("button");
