@@ -1,9 +1,15 @@
 .tita {
     font-size: 24px;
+    @include mobile {
+        font-size: 22px;
+    }
 }
 
 .titb {
     font-size: 36px;
+    @include mobile {
+        font-size: 24px;
+    }
 }
 
 .titc {
@@ -21,6 +27,10 @@
 .num {
     font-size: 14px;
     color: $dark-gray;
+}
+
+.tlt {
+    font-weight: 200;
 }
 
 .lt {
@@ -77,8 +87,169 @@
     height:40px;
     overflow: hidden;
     border-radius: 13px;
+    background-color: $gray;
+    text-align: center;
+    &.pro {
+        width: 130px;
+        height: 130px;
+        display: block;
+        border-radius: 25px;
+        @include mobile {
+            display: inline-block;
+        }
+    }
     img {
         width:100%;
         height:auto;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.null__user {
+    i {
+        font-size:36px;
+        color: $light-gray;
+        margin-top: 6px;
+        margin-left: 1px;
+    }
+}
+
+.form-container {
+    .form__title {
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+        border-bottom: 1px solid white;
+        padding: 30px 0 30px;
+        margin: 0 auto 40px;
+    }
+    input[type=text],
+    input[type=email],
+    input[type=password] {
+        width: 100%;
+        display: block;
+        max-width: 300px;
+        margin: 0 auto;
+        padding: 8px 10px;
+        margin-bottom: 15px;
+    }
+
+    textarea {
+        width: 100%;
+        display: block;
+        max-width: 300px;
+        margin: 0 auto;
+        padding: 8px 10px;
+        margin-bottom: 15px;
+    }
+    
+    input[type=submit] {
+        cursor: pointer;
+        width: 100%;
+        display: block;
+        max-width: 300px;
+        margin: 0 auto;
+        padding: 8px 10px;
+        background-color: yellow;
+        font-size: 14px;
+        &:hover {
+            color: white;
+            background-color: $main;
+            transition: .3s;
+        }
+    }
+
+    .fileUpload {
+        width: 100%;
+        max-width: 300px;
+        display: block;
+        margin: 40px auto 20px;
+        label {
+            display: inline-block;
+            width: 100%;
+            padding: 8px 10px;
+            text-align: center;
+            color: $main;
+            background-color: white;
+            border-radius: 2px;
+            border: 1px solid $main;
+            vertical-align: top;
+            line-height: 1;
+            cursor: pointer;
+            &:hover {
+                color: white;
+                background-color: $main;
+            }
+        }
+        input[type=file] {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            border: 0;
+        }
+        .preview {
+            width: 300px;
+            height: auto;
+            margin: 20px 0 0;
+            video {
+                width: 100%;
+            }
+            img {
+                width: 100%;
+            }
+        }
+    }
+}
+
+input[type="range"] {
+    margin: auto;
+    -webkit-appearance: none;
+    position: relative;
+    height: 4px;
+    width: 100px;
+    cursor: pointer;
+    border-radius: 0;
+    &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background-color: $main;
+        border: 1px solid white;
+    }
+    &::-moz-range-track {
+        height: 4px;
+        background-color: $gray;
+    }
+    &::-moz-range-thumb {
+        height: 15px;
+        width: 15px;
+        border-radius: 50%;
+        background-color: $main;
+        border: 1px solid white;
+    }
+    &::-ms-fill-lower {
+        background: dodgerblue;
+    }
+    &::-ms-ticks-after {
+        display: none;
+    }
+    &::-ms-ticks-before {
+        display: none;
+    }
+    &::-ms-track {
+        color: transparent;
+        height: 4px;
+        border: none;
+    }
+    &::-ms-tooltip { 
+        display: none;
     }
 }

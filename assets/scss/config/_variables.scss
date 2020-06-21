@@ -1,12 +1,16 @@
+// Color
 $bg-color: #eee;
-
-$gray: #f5f5f5;
 $black: #111;
 $light-black: #333;
+$gray: #f5f5f5;
 $pale-gray: #ddd;
 $dark-gray: #444;
 $light-gray: #888;
 $red: red;
 $yellow: yellow;
-
 $main: rgb(23, 63, 218);
+
+// Breakpoints
+$breakpoint-mobile: 320px;
+$breakpoint-tablet: 758px;
+$breakpoint-desktop: 1024px;

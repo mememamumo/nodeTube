@@ -1,0 +1,38 @@
+.user-profile {
+    position: relative;
+    display: flex;
+    width: 100%;
+    @include mobile {
+        display: block;
+        text-align: center;
+    }
+    .user-profile__header {
+        position: relative;
+        padding: 40px 40px 15px 0;
+        @include mobile {
+            padding: 40px 0 25px;           
+        }
+        .profile__username {
+            margin-top: 15px;
+        }
+        .user-profile__btns {
+            margin-top: 15px;
+            a {
+                display: block;
+                margin-top: 8px;
+                margin-right: 5px;
+            }
+        }
+
+    }
+    .home-videos {
+        flex: 1;
+        padding-left: 40px;
+        border-left: 1px solid $gray;
+        @include mobile {
+            display: block;
+            padding-left: 0;
+            text-align: left;
+        }
+    }
+}

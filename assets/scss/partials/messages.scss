@@ -25,10 +25,16 @@
         background-color: #e74c3c;
     }
     &.success {
-        background-color: #2ecc71;
+        background-color: $main;
+        .flash-message__text {
+            color: white;
+        }
     }
     &.info {
-        background-color: #f1c40f;
+        background-color: yellow;
+        .flash-message__text {
+            color: $black;
+        }
     }
     .flash-message__text {
         color: white;

@@ -1,6 +1,7 @@
 const videoContainer = document.getElementById("jsVideoPlayer");
 const videoPlayer = document.querySelector("#jsVideoPlayer video");
 const playBtn = document.getElementById("jsPlayButton");
+const volumeWrap = document.getElementById("jsVolumeWrap");
 const volumeBtn = document.getElementById("jsVolumeBtn");
 const volumeRange = document.getElementById("jsVolume");
 const fullScrnBtn = document.getElementById("jsFullScreen");
@@ -48,8 +49,8 @@ function exitFullScreen() {
         document.exitFullscreen();
     } else if ( document.mozCancelFullScreen) {
         document.mozCancelFullScreen();
-    } else if (document.webkitExitFullScreen) {
-        document.webkitExitFullscreen();
+    } else if (document.webkitCancelFullScreen) {
+        document.webkitCancelFullScreen();
     } else if (document.msExitFullscreen) {
         document.msExitFullscreen();
     }
@@ -131,6 +132,15 @@ function scrub(e) {
     videoPlayer.currentTime = scrubTime;
 }
 
+function handleVolumeBtn() {
+    volumeWrap.onmouseover = function() {
+        volumeRange.classList.add("open");
+    }
+    volumeWrap.onmouseleave = function(e) {
+        volumeRange.classList.remove("open");
+    }
+}
+
 function init() {
     videoPlayer.volume = 0.5;
     playBtn.addEventListener("click", handlePlayClick);
@@ -153,4 +163,5 @@ function init() {
 
 if (videoContainer) {
     init();
+    handleVolumeBtn();
 }

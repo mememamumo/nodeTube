@@ -9,7 +9,15 @@ body {
     font-size: 14px;
 }
 
-main::before {
+body {
+    width: 100%;
+    max-width: 1016px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 7;
+}
+
+body::before {
     content: " ";
     position: fixed;
     top: 0;
@@ -18,10 +26,10 @@ main::before {
     border-bottom: 150vw solid rgba(0,0,0,0);
     border-top: 100vw solid transparent;
     transform: scale(.9999);
-    z-index: 0;
+    z-index: -1;
 }
 
-main::after {
+body::after {
     content: " ";
     position: fixed;
     top: -60vw;
@@ -29,7 +37,7 @@ main::after {
     border-left: 110vw solid rgba(255, 255, 198, 0.38);
     border-bottom: 20vw solid transparent;
     border-top: 90vw solid rgba(0,0,0,0);
-    z-index: -1;
+    z-index: -2;
 }
 
 

@@ -1,4 +1,5 @@
 @import "config/_variables.scss";
+@import "config/mixin";
 @import "config/reset.scss";
 @import "config/utils.scss";
 @import "main.scss";
@@ -14,4 +15,9 @@
 @import "partials/modal.scss";
 
 @import "pages/home.scss";
+@import "pages/join.scss";
 @import "pages/videoDetail.scss";
+@import "pages/userDetail.scss";
+@import "pages/search.scss";
+@import "pages/upload.scss";
+@import "pages/editVideo.scss";

@@ -9,11 +9,23 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        @include mobile {
+            flex-direction: column;
+            flex-wrap: nowrap;
+            align-items: flex-end;
+        }
         .header__column {
+            @include mobile {
+                padding-right: 10px;
+            }
             .logo {
                 position: fixed;
                 top: 40px;
                 color: $main;
+                @include mobile {
+                    left: 10px;
+                    top: 50px;
+                }
                 &:hover {
                     color: $black;
                     transition: .3s;
@@ -22,6 +34,9 @@
             .search {
                 input {
                     width: 300px;
+                    @include mobile {
+                        width: 100%;
+                    }
                 }
             }
             ul {
@@ -34,6 +49,11 @@
                         background-color: $yellow;
                         transition: .25s;
                     }
+                }
+            }
+            @include mobile {
+                &:last-child {
+                    margin-top: 10px;
                 }
             }
         }

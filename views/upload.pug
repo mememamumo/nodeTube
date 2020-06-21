@@ -2,11 +2,18 @@ extends layouts/main
 
 block content
     .form-container
+        .form__title.tita.st 비디오 업로드
         form(action=`/videos${routes.upload}`, method="post", enctype="multipart/form-data")
             .fileUpload
-                label(for="file") Video File
+                label.file__select(for="file") 찾아보기
+                input.input__file(type="file", id="file", name="videoFile", required=true, multiple = false,  accept="video/*")
+                //- , accept="video/*"
                 //- video/mp4,video/x-m4v,video/*
-                input(type="file", id="file", name="videoFile", required=true, accept="video/*")
-            input(type="text", placeholder="Title", name="title", required=true)
-            textarea(name="description", placeholder="Description", required=true)
-            input(type="submit", value="Upload Video")
+
+                .preview#viewVideo
+
+            
+
+            input(type="text", placeholder="제목", name="title", required=true)
+            textarea(name="description", placeholder="설명", required=true, cols="50", rows="5")
+            input(type="submit", value="비디오 업로드")

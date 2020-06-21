@@ -14,7 +14,9 @@ function closeModal() {
 }
 
 function init() {
-    formUserNull.addEventListener("click", openModal);
+    if (formUserNull !== null) {
+        formUserNull.addEventListener("click", openModal);
+    };
     closeBtn.addEventListener("click", closeModal);
     overlay.addEventListener("click", closeModal);
 }

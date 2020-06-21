@@ -16,9 +16,35 @@
     }
     .modal__content {
         position: relative;
-        width: 30%;
+        width: 100%;
+        max-width: 300px;
         background-color: yellow;
         text-align: center;
+        padding: 20px 10px;
+        @include mobile {
+            max-width: 260px;
+        }
+        .modal__tit {
+            font-size: 16px;
+        }
+        .modal__txt {
+            margin-top: 10px;
+        }
+        .modal__btn-wrap {
+            margin-top: 15px;
+            button {
+                margin: 0 4px;
+                background-color: white;
+                border: 1px solid $black;
+                border-radius: 2px;
+                padding: 6px 10px;
+                &:hover {
+                    background-color: $main;
+                    color: white;
+                    border: 1px solid $main;
+                }
+            }
+        }
     }
 }
 

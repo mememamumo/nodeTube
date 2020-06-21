@@ -2,6 +2,7 @@ extends layouts/main
 
 block content
     .form-container
+        .form__title.tita.st 비디오 수정
         form(action=`${routes.editVideo(video.id)}`, method="post")
             input(type="text", placeholder="Title", name="title", value=video.title)
             textarea(name="description", placeholder="Description")=video.description

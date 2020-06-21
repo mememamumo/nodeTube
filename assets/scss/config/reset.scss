@@ -78,7 +78,8 @@ summary,
 time,
 mark,
 audio,
-video {
+video,
+textarea {
   margin: 0;
   padding: 0;
   border: 0;
@@ -156,9 +157,10 @@ table {
   border-spacing: 0;
 }
 a {
-  all: unset;
+  // all: unset;
   cursor: pointer;
   color:inherit;
+  text-decoration: none;
 }
 
 input,

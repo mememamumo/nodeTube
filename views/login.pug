@@ -1,7 +1,11 @@
-.form-container
-    form(action=routes.login, method="post")
-        input(type="email", name="email", placeholder="Email", required=true)
-        input(type="password", name="password", placeholder="Password", required=true)
-        input(type="submit", value="Log In")
+extends layouts/main
 
-include partials/socialLogin
+block content
+    .form-container.login
+        .form__title.tita.st 로그인
+        form(action=routes.login, method="post")
+            input(type="email", name="email", placeholder="Email", required=true)
+            input(type="password", name="password", placeholder="Password", required=true)
+            input(type="submit", value="로그인")
+
+    include partials/socialLogin

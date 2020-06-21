@@ -4,20 +4,17 @@ include mixins/videoBlock
 block content
     .user-profile
         .user-profile__header
-            //- if loggedUser
-            //-     img.avatar(src=user.avatarUrl)
-            //- else if loggedUser == null
-            //-     img.avatar(src=`${user.avatarUrl.substr("6,str.length")}`)
-            img.avatar(src=user.avatarUrl)
+            a.round.pro
+                img.avatar(src=user.avatarUrl)
             h4.profile__username.tita=user.name
             if loggedUser !== null
                 if user.id === loggedUser.id
                     .user-profile__btns
-                        a(href=`/users${routes.editProfile}`)
+                        a.edit-btn(href=`/users${routes.editProfile}`)
                             button.edit-btn Edit Profile
-                        a(href=`/users${routes.changePassword}`)
+                        a.edit-btn(href=`/users${routes.changePassword}`)
                             button.edit-btn Change Password
-        .home-video
+        .home-videos
             each item in user.videos
                 +videoBlock({
                     id:item.id,
