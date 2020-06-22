@@ -8,6 +8,9 @@
         @include mobile {
             padding: 0 10px 15px;
         }
+        @include tablet {
+            padding: 0 10px 15px;
+        }
         .video__title {
             width: calc(100% - 80px);
         }

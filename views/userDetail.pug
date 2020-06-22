@@ -14,6 +14,7 @@ block content
                             button.edit-btn Edit Profile
                         a.edit-btn(href=`/users${routes.changePassword}`)
                             button.edit-btn Change Password
+                        a.logout-btn(href=routes.logout) 로그아웃
         .home-videos
             each item in user.videos
                 +videoBlock({

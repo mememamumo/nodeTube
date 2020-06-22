@@ -2,7 +2,7 @@ import routes from "../routes";
 import User from "../models/User";
 import passport from "passport";
 
-// export const join = (req, res) => res.render("join");
+const defaultAvatar = "https://img.icons8.com/ios-filled/500/888888/cat.png";
 
 export const getJoin = (req, res) => {
     res.render("join", {pageTitle: "Join"})
@@ -26,7 +26,8 @@ export const postJoin = async (req, res, next) => {
         try {
             const user = await User({
                 name,
-                email
+                email,
+                avatarUrl: defaultAvatar
             });
             await User.register(user, password);
             next();
@@ -249,7 +250,8 @@ export const logout = (req, res) => {
 
 export const getMe = async (req, res) => {
     const {
-        params: { id }
+        params: { id },
+        user
     } = req;
     try {
         const user = await User.findById(req.user.id).populate("videos");
@@ -275,7 +277,10 @@ export const userDetail = async (req, res) => {
 };
 
 export const getEditProfile = (req, res) => {
-    res.render("editProfile", { pageTitle: "Edit Profile" });
+    const {
+        user
+    } = req;
+    res.render("editProfile", { pageTitle: "Edit Profile", user });
 };
 
 export const postEditProfile = async (req, res) => {
@@ -303,7 +308,10 @@ export const postEditProfile = async (req, res) => {
 };
 
 export const getChangePassword = (req, res) => {
-    res.render("changePassword", { pageTitle: "Change Password" });
+    const {
+        user
+    } = req;
+    res.render("changePassword", { pageTitle: "Change Password", user });
 };
 
 export const postChangePassword = async (req, res) => {

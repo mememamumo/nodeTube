@@ -21,6 +21,16 @@
                 display: block;
                 margin-top: 8px;
                 margin-right: 5px;
+                @include mobile {
+                    margin-right: 0;
+                }
+            }
+            .logout-btn {
+                text-decoration: underline;
+                margin: 20px 0 0 8px;
+                &:hover {
+                    color: $main;
+                }
             }
         }
 

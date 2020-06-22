@@ -17,6 +17,8 @@ header.header
                     li
                         a(href=`/videos${routes.upload}`) 업로드
                     li
-                        a(href=routes.me) 프로필
-                    li
-                        a(href=routes.logout) 로그아웃
+                        a.round.sm(href=routes.me)
+                            img.avatar(src=user.avatarUrl)
+
+                    //- li
+                    //-     a(href=routes.logout) 로그아웃

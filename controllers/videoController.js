@@ -4,10 +4,13 @@ import User from "../models/User";
 import Comment from "../models/Comment";
 
 export const home = async (req, res) => {
+    const {
+        user
+    } = req;
     try {
         const videos = await Video.find({}).sort({_id:-1});
         // console.log(videos);
-        res.render("home", {pageTitle: "Home", videos})
+        res.render("home", {pageTitle: "Home", videos, user})
     } catch (error) {
         console.log(error);
         res.render("home", {pageTitle: "Home", videos: []});
@@ -16,21 +19,25 @@ export const home = async (req, res) => {
 
 export const search = async (req, res) => {
     const {
-        query: { term: searchingBy }
+        query: { term: searchingBy },
+        user
     } = req;
 
     let videos = [];
 
     try {
-        videos = await Video.find({title:{$regex: searchingBy, $options: "i"}});
+        videos = await Video.find({title:{$regex: searchingBy, $options: "i" }});
     } catch (error) {
         console.log(error);
     }  
-    res.render("search", { pageTitle: "Search", searchingBy, videos});
+    res.render("search", { pageTitle: "Search", searchingBy, videos, user});
 };
 
 export const getUpload = (req, res) => {
-    res.render("upload", { pageTitle: "Upload" });
+    const {
+        user
+    } = req;
+    res.render("upload", { pageTitle: "Upload", user });
 };
 
 export const postUpload = async (req, res) => {
@@ -74,7 +81,8 @@ export const videoDetail = async (req, res) => {
 
 export const getEditVideo = async (req, res) => {
     const {
-        params: { id }
+        params: { id },
+        user
     } = req;
 
     try {
@@ -82,7 +90,7 @@ export const getEditVideo = async (req, res) => {
         if(String(video.creator) !== req.user.id) {
             throw Error();
         } else {
-            res.render("editVideo", {pageTitle: `Edit ${video.title}`, video});
+            res.render("editVideo", {pageTitle: `Edit ${video.title}`, video, user});
         }
     } catch (error) {
         res.redirect(routes.home);

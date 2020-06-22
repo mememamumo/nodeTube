@@ -9,6 +9,7 @@ block content
                 input.input__file-img(type="file", id="avatar", name="avatar", accept="image/*")
 
                 .preview#viewImage
+                    img(src=user.avatarUrl)
             input(type="text", placeholder="별명", name="name", value=loggedUser.name)
-            input(type="email", placeholder="이메일", name="email", value=loggedUser.email)
+            //- input(type="email", placeholder="이메일", name="email", value=loggedUser.email)
             input(type="submit", value="Update Profile")

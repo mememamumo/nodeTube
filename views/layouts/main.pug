@@ -25,7 +25,10 @@ html
             })
 
         include ../partials/header
-        main
+        main#jsMain
             block content
         include ../partials/footer
+        .loading#jsLoading
+            .loader
+            .shadow
         script(src="/static/main.js")

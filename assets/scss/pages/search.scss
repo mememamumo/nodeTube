@@ -1,5 +1,8 @@
 .search__header {
     margin-top: 20px;
+    @include mobile {
+        margin-left: 10px;
+    }
     span {
         background-color: $light-gray;
         color: white;
@@ -13,12 +16,18 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     overflow: hidden;
+    @include mobile {
+        grid-template-columns: repeat(1, 1fr);
+    }
     .videoBlock {
         position: relative;
         overflow: hidden;
         width: calc(100% margin);
         height: auto;
         margin: 18px 10px;
+        @include mobile {
+            margin: 18px 0;
+        }
         a {
             display: block;
             video {
@@ -30,9 +39,15 @@
                 margin: 16px 0 3px;
                 padding: 4px 5px;
                 line-height: 1;
+                @include mobile {
+                    padding: 4px 10px;
+                }
             }
             .views__wrap {
                 padding: 0 5px;
+                @include mobile {
+                    padding: 0 10px;
+                }
                 .videoBlock__views {
                     margin-left: 5px;
                 }

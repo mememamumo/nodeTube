@@ -63,6 +63,7 @@
     background-color: white;
     padding: 3px 5px;
     border-radius: 3px;
+    font-size: 14px;
     &:hover {
         color: white;
         border: 1px solid $main;
@@ -83,12 +84,16 @@
 .round {
     position: relative;
     display:inline-block;
-    width:40px;
-    height:40px;
+    // width:40px;
+    // height:40px;
     overflow: hidden;
     border-radius: 13px;
     background-color: $gray;
     text-align: center;
+    &.sm {
+        width:40px;
+        height:40px;
+    }
     &.pro {
         width: 130px;
         height: 130px;
@@ -115,6 +120,17 @@
         margin-top: 6px;
         margin-left: 1px;
     }
+    &.sm {
+        i {
+            font-size: 23px;
+        }
+    }
+    &.pro {
+        i {
+            font-size: 100px;
+            margin-top: 20px;
+        }
+    }
 }
 
 .form-container {
@@ -135,6 +151,7 @@
         margin: 0 auto;
         padding: 8px 10px;
         margin-bottom: 15px;
+        font-size: 14px;
     }
 
     textarea {
@@ -144,6 +161,7 @@
         margin: 0 auto;
         padding: 8px 10px;
         margin-bottom: 15px;
+        font-size: 14px;
     }
     
     input[type=submit] {

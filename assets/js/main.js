@@ -6,3 +6,4 @@ import "./hoverVideo";
 import "./modal";
 import "./formThumbVideo";
 import "./formThumbImg";
+import "./loading";

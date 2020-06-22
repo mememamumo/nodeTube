@@ -34,16 +34,32 @@
             .search {
                 input {
                     width: 300px;
+                    margin-left: 90px;
                     @include mobile {
                         width: 100%;
+                        margin-left: 0;
                     }
                 }
             }
             ul {
                 display: flex;
+                align-items: baseline;
+                height: 40px;
                 li {
+                    margin-left: 5px;
                     a {
                         padding: 2px 5px;
+                        vertical-align: middle;
+                        &.round {
+                            @include mobile {
+                                width: 35px;
+                                height: 35px;
+                            }
+                            &:hover {
+                                border-color: yellow;
+                                transition: .3;
+                            }
+                        }
                     }
                     a:hover {
                         background-color: $yellow;
