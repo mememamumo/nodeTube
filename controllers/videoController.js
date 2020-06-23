@@ -46,12 +46,13 @@ export const postUpload = async (req, res) => {
             title,
             description
         },
-        file: { path }
+        // file: { path }
+        file: { location }
     } = req;
     
     // .create(): 생성 , .find(): 찾기
     const newVideo = await Video.create({
-        fileUrl: path,
+        fileUrl: location,
         title,
         description,
         creator: req.user.id

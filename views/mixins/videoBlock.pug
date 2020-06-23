@@ -3,8 +3,11 @@ mixin videoBlock(video = {})
         a(href=routes.videoDetail(video.id))
             //- video.videoBlock__thumbnail(src=`/${video.videoFile}`, controls=false)
             video.videoBlock__thumbnail.vid(controls=false, muted)
-                source(src=`/${video.videoFile}`, type="video/mp4")
-                source(src=`/${video.videoFile}`)
+                //- source(src=`/${video.videoFile}`, type="video/mp4")
+                //- source(src=`/${video.videoFile}`)
+                //- aws 연결 후, 경로 수정
+                source(src=video.videoFile, type="video/mp4")
+                source(src=video.videoFile)
                 span 현재 사용하고 있는 브라우저는 비디오 태그를 지원하지 않습니다.
             h4.videoBlock__title.tita=video.title
             .views__wrap

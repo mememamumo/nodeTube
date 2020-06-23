@@ -293,7 +293,7 @@ export const postEditProfile = async (req, res) => {
             req.user.id, {
                 name,
                 email,
-                avatarUrl: file ? file.path : req.user.avatarUrl
+                avatarUrl: file ? file.location : req.user.avatarUrl
                 // avatarUrl: `/`+`${file ? file.path : req.user.avatarUrl}`
             }
         );
