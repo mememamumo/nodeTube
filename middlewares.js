@@ -1,7 +1,7 @@
 import multer from "multer";
 import routes from "./routes";
 
-const multerVideo = multer({dest: "uploads/mango/"});
+const multerVideo = multer({dest: "uploads/videos/"});
 const multerAvatar = multer({dest: "uploads/avatars/"});
 
 // .single() is that uploading only one file.
