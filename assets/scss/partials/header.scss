@@ -51,11 +51,13 @@
                         padding: 2px 5px;
                         vertical-align: middle;
                         &.round {
+                            border: 2px solid $pale-gray;
                             @include mobile {
                                 width: 35px;
                                 height: 35px;
                             }
                             &:hover {
+                                border-width: 5px;
                                 border-color: yellow;
                                 transition: .3;
                             }
