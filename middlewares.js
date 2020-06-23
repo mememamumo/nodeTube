@@ -14,7 +14,7 @@ const s3 = new aws.S3({
 
 const multerVideo = multer({
     storage: multerS3({
-        S3,
+        s3,
         acl: "public-read",
         bucket: "nodetube/video"
 
@@ -23,7 +23,7 @@ const multerVideo = multer({
 
 const multerAvatar = multer({
     storage: multerS3({
-        S3,
+        s3,
         acl: "public-read",
         bucket: "nodetube/avatar"
     })
