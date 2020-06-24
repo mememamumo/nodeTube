@@ -5,7 +5,7 @@ header.header
                 i.fas.fa-cat.titc
         .header__column
             form.search(action=routes.search, method="get")
-                input(type="text", placeholder="Search for term...", name="term")
+                input(type="text", placeholder="비디오 검색", name="term")
         .header__column
             ul
                 if !loggedUser
