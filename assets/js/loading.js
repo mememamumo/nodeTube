@@ -1,19 +1,21 @@
-function onReady(callback) {
-    var intervalID = window.setInterval(checkReady, 2000);
+// document.onreadystatechange = function () {
+//     var state = document.readyState
+//     if (state == 'complete') {
+//            document.getElementById('interactive');
+//            document.querySelector('.loading').style.display="none";
+//     }
+// }
 
-    function checkReady() {
-        if (document.getElementsByTagName('body')[0] !== undefined) {
-            window.clearInterval(intervalID);
-            callback.call(this);
-        }
+document.onreadystatechange = function () {
+    const state = document.readyState
+
+    if (state == "interactive") {
+        document.getElementById("jsMain").style.display = "none";
+    } else if (state == "complete") {
+        setTimeout(function () {
+            document.getElementById('interactive');
+            document.querySelector('.loading').style.display="none";
+            document.getElementById("jsMain").style.display = "block";
+        }, 1000)
     }
 }
-
-function show(id, value) {
-    document.getElementById(id).style.display = value ? 'block' : 'none';
-}
-
-onReady(function () {
-    show('jsMain', true);
-    show('jsLoading', false);
-});

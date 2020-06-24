@@ -41,150 +41,130 @@ body::after {
 }
 
 // Loading
-main {
-    display: none;
+@keyframes rect-rotating {
+    50% {
+		transform: rotate(90deg);
+	}
+	
+	50% {
+		transform: rotate(90deg);
+    }
+
+    100% {
+		transform: rotate(180deg);
+    }
+}
+@keyframes ball-jumping {
+	20%{
+        transform: translateY(-2em);
+    }
+	
+	80% {
+        transform: translateY(-2em);
+    }
+
+    50% {
+        transform: translateY(calc((50px - 50px) / 2));
+    }
 }
 
-@keyframes mainAnimation {
+@keyframes shadowAnimation {
 	0% {
-        width: 50px;
-        border-radius: 50%;
-		transform: translateX(0px) translateY(0px) rotate(0deg);
+		width: 70px;
+		transform: translateX(-10px) translateY(0px) rotate(0deg);
 	}
 	20% {
-        width: 50px;
-        border-radius: 50%;
-		transform: translateX(0px) translateY(0px) rotate(0deg);
+		width: 50px;
+		transform: translateX(0) translateY(0px) rotate(0deg);
 	}
 	40% {
-        width: 150px;
-        border-radius: 0;
-		transform: translateX(-50px) translateY(0px) rotate(0deg);
+		width: 70px;
+		transform: translateX(-10px) translateY(0px) rotate(0deg);
 	}
 	60% {
-        width: 150px;
-        border-radius: 0;
-		transform-origin: bottom right;
-		transform: translateX(-150px) translateY(0px) rotate(90deg);
+		width: 50px;
+		transform: translateX(0) translateY(0px) rotate(0deg);
 	}
 	80% {
-        width: 50px;
-        border-radius: 50%;
-		transform: translateX(-25px) translateY(0px) rotate(90deg);
+		width: 70px;
+		transform: translateX(-10px) translateY(0px) rotate(0deg);
 	}
 	100% {
 		width: 50px;
-		transform: translateX(-50px) translateY(0px) rotate(90deg);
+		transform: translateX(0) translateY(0px) rotate(0deg);
 	}
 }
-@keyframes secundaryAnimation {
-	0% {
-		transform: translateX(0px) translateY(0px) rotate(0deg);
-	}
-	20% {
-		transform: translateX(0px) translateY(0px) rotate(180deg);
-	}
-	40% {
-		transform: translateX(0px) translateY(0px) rotate(180deg);
-	}
-	60% {
-		transform: translateX(0px) translateY(0px) rotate(0deg);
-	}
-	80% {
-		transform: translateX(0px) translateY(0px) rotate(0deg);
-	}
-	100% {
-		transform: translateX(0px) translateY(0px) rotate(180deg);
-	}
-}
-@keyframes shadowAnimation {
-	0% {
-		width: 150px;
-		transform: translateX(-25px) translateY(0px) rotate(0deg);
-	}
-	20% {
-		width: 75px;
-		transform: translateX(37.5px) translateY(0px) rotate(0deg);
-	}
-	40% {
-		width: 200px;
-		transform: translateX(-25px) translateY(0px) rotate(0deg);
-	}
-	60% {
-		width: 75px;
-		transform: translateX(37.5px) translateY(0px) rotate(0deg);
-	}
-	80% {
-		width: 75px;
-		transform: translateX(37.5px) translateY(0px) rotate(0deg);
-	}
-	100% {
-		width: 150px;
-		transform: translateX(-25px) translateY(0px) rotate(0deg);
-	}
-}
-@keyframes float {
-	0% {
-		top: 50%;
-	}
-	50% {
-		top: 51%;
-	}
-	100% {
-		top: 50%;
-	}
-}
+
 .loading {
     position: fixed;
-    top: 0;
-    left: 0;
+	top: 0;
+	left: 0;
     width: 100%;
     height: 100vh;
     z-index: 9;
-    background: rgb(238, 238, 238);
+    background: $bg-color;
 }
 
-.loader {
+.loading::before {
+    content: " ";
+    position: fixed;
+    top: 0;
+    right: 0;
+    border-left: 100vw solid rgba(129, 168, 241, 0.24);
+    border-bottom: 150vw solid rgba(0,0,0,0);
+    border-top: 100vw solid transparent;
+    transform: scale(.9999);
+    z-index: -1;
+}
+
+.loading::after {
+    content: " ";
+    position: fixed;
+    top: -60vw;
+    right: -10vw;
+    border-left: 110vw solid rgba(255, 255, 198, 0.38);
+    border-bottom: 20vw solid transparent;
+    border-top: 90vw solid rgba(0,0,0,0);
+    z-index: -2;
+}
+
+.loader__ball {
 	position: absolute;
-	width: 50px;
-	height: 50px;
 	top: 50%;
 	left: 50%;
 	margin-top: -25px;
 	margin-left: -25px;
+	width: 50px;
+	height: 50px;
+	background-color: $yellow;
+	border-radius: 50%;
+	animation: ball-jumping 1s ease-in-out infinite;
+}
+
+.loader__rect {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: 25px; 
+	margin-left: -25px;
+	width: 50px;
+	height: 50px;
 	background-color: $main;
-	transform: translateX(0px) translateY(0px) rotate(0deg);
-	animation: mainAnimation 2.6s ease 0s infinite forwards;
-    z-index: 9;
-    border-radius: 50%;
-	&:after {
-		content: '';
-		display: inline-block;
-		position: absolute;
-		width: 50px;
-		height: 50px;
-		top: 0;
-		left: -50px;
-		background-color: $yellow;
-		transform-origin: top right;
-		transform: translateX(0px) translateY(0px) rotate(0deg);
-        animation: secundaryAnimation 2.6s ease 0s infinite forwards;
-        border-radius: 50%;
-	}
+	animation: rect-rotating 1s ease-in-out infinite;
 }
 
 .shadow {
 	position: absolute;
-	width: 100px;
+	width: 50px;
 	height: 10px;
 	top: 50%;
 	left: 50%;
-	margin-top: 50px;
-	margin-left: -75px;
+	margin-top: 100px;
+	margin-left: -25px;
 	border-radius: 50%;
-	background-color: #95a5a6;
+	background-color: rgba(0,0,0,0.3);
 	transform: translateX(0px) translateY(0px) rotate(0deg);
-	animation: shadowAnimation 2.6s ease 0s infinite forwards,  float 5s ease-in-out 0s infinite forwards;
+	animation: shadowAnimation 2.6s ease 0s infinite forwards, floatAnimation 5s ease-in-out 0s infinite forwards;
 	filter: blur(5px);
 	z-index: 1;
 }
