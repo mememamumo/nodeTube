@@ -68,33 +68,6 @@ body::after {
     }
 }
 
-@keyframes shadowAnimation {
-	0% {
-		width: 70px;
-		transform: translateX(-10px) translateY(0px) rotate(0deg);
-	}
-	20% {
-		width: 50px;
-		transform: translateX(0) translateY(0px) rotate(0deg);
-	}
-	40% {
-		width: 70px;
-		transform: translateX(-10px) translateY(0px) rotate(0deg);
-	}
-	60% {
-		width: 50px;
-		transform: translateX(0) translateY(0px) rotate(0deg);
-	}
-	80% {
-		width: 70px;
-		transform: translateX(-10px) translateY(0px) rotate(0deg);
-	}
-	100% {
-		width: 50px;
-		transform: translateX(0) translateY(0px) rotate(0deg);
-	}
-}
-
 .loading {
     position: fixed;
 	top: 0;
@@ -151,22 +124,6 @@ body::after {
 	height: 50px;
 	background-color: $main;
 	animation: rect-rotating 1s ease-in-out infinite;
-}
-
-.shadow {
-	position: absolute;
-	width: 50px;
-	height: 10px;
-	top: 50%;
-	left: 50%;
-	margin-top: 100px;
-	margin-left: -25px;
-	border-radius: 50%;
-	background-color: rgba(0,0,0,0.3);
-	transform: translateX(0px) translateY(0px) rotate(0deg);
-	animation: shadowAnimation 2.6s ease 0s infinite forwards, floatAnimation 5s ease-in-out 0s infinite forwards;
-	filter: blur(5px);
-	z-index: 1;
 }
 
 
