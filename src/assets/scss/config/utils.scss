@@ -171,11 +171,12 @@
         max-width: 300px;
         margin: 0 auto;
         padding: 8px 10px;
-        background-color: yellow;
+        background: $yellow;
         font-size: 14px;
+        border-radius: 0;
         &:hover {
             color: white;
-            background-color: $main;
+            background: $main;
             transition: .3s;
         }
     }
