@@ -6,7 +6,7 @@ mixin videoPlayer(video = {})
             //- aws 연결 후, 경로 수정
             source(src=video.src, type="video/mp4")
             source(src=video.src)
-            img(src=video.src, alt="Video Thumbnail")
+            img(src=`${video.src}.jpg`, alt="Video Thumbnail")
             span 현재 사용하고 있는 브라우저는 비디오 태그를 지원하지 않습니다.
         .videoPlayer__progress
             .progress__filled
