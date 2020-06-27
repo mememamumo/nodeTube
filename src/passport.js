@@ -31,9 +31,7 @@ passport.use(
     new FacebookStrategy({
         clientID: process.env.FB_ID,
         clientSecret: process.env.FB_SECRET,
-        callbackURL: process.env.PRODUCTION
-        ? `https://desolate-bastion-42349.herokuapp.com${routes.facebookCallback}`
-        : `http://localhost:4000${routes.facebookCallback}`,
+        callbackURL: `https://9d75e03e.ngrok.io${routes.facebookCallback}`,
         // callbackURL: "https://localhost:4000/auth/facebook/callback",
         profileFields: ["id", "displayName", "photos", "email"],
         scope: ["public_profile", "email"]
@@ -46,9 +44,7 @@ passport.use(
     new KakaoStrategy({
         clientID: process.env.KAKAO_ID,
         clientSecret: process.env.KAKAO_SECRET,
-        callbackURL: process.env.PRODUCTION
-        ? `https://desolate-bastion-42349.herokuapp.com${routes.kakaoCallback}`
-        : `http://localhost:4000${routes.kakaoCallback}`
+        callbackURL: `http://localhost:4000${routes.kakaoCallback}`
     },
         kakaoLoginCallback
     )
@@ -58,9 +54,7 @@ passport.use(
     new NaverStrategy({
         clientID: process.env.NAVER_ID,
         clientSecret: process.env.NAVER_SECRET,
-        callbackURL: process.env.PRODUCTION
-        ? `https://desolate-bastion-42349.herokuapp.com${routes.naverCallback}`
-        : `http://localhost:4000${routes.naverCallback}`
+        callbackURL: `http://localhost:4000${routes.naverCallback}`
     },
         naverLoginCallback
     )
@@ -70,9 +64,7 @@ passport.use(
     new GoogleStrategy({
         clientID: process.env.GOOGLE_ID,
         clientSecret: process.env.GOOGLE_SECRET,
-        callbackURL: process.env.PRODUCTION
-        ? `https://desolate-bastion-42349.herokuapp.com${routes.googleCallback}`
-        : `http://localhost:4000${routes.googleCallback}`
+        callbackURL: `http://localhost:4000${routes.googleCallback}`
     },
         googleLoginCallback
     )

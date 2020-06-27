@@ -104,7 +104,6 @@ export const facebookLoginCallback = async (_, __, profile, cb) => {
             user.facebookId = id;
             user.email;
             user.avatarUrl = `https://graph.facebook.com/${id}/picture?type=large`;
-            console.log(user);
             return cb(null, user);
         }
         const newUser = await User.create({
