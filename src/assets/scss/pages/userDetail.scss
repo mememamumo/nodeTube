@@ -41,6 +41,7 @@
         border-left: 1px solid $gray;
         @include mobile {
             display: block;
+            margin-top: 30px;
             padding-left: 0;
             text-align: left;
             border-left: 0 solid $gray;
