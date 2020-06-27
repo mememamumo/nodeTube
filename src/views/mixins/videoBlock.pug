@@ -2,7 +2,7 @@ mixin videoBlock(video = {})
     .videoBlock
         a(href=routes.videoDetail(video.id))
             //- video.videoBlock__thumbnail(src=`/${video.videoFile}`, controls=false)
-            video.videoBlock__thumbnail.vid(controls=false, muted, preload)
+            video.videoBlock__thumbnail.vid(controls=false, muted, preload="metadata")
                 //- source(src=`/${video.videoFile}`, type="video/mp4")
                 //- source(src=`/${video.videoFile}`)
                 //- aws 연결 후, 경로 수정
