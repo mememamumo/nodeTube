@@ -78,15 +78,3 @@
         }
     }
 }
-
-.videoBlock__desktop {
-    @include mobile {
-        display: none;
-    }
-}
-.videoBlock__mobile {
-    display: none;
-    @include mobile {
-        display: block;
-    }
-}

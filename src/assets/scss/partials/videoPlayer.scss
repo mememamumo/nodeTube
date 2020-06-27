@@ -108,15 +108,3 @@
         }
     }
 }
-
-.videoPlayer__desktop {
-    @include mobile {
-        display: none;
-    }
-}
-.videoPlayer__mobile {
-    display: none;
-    @include mobile {
-        display: block;
-    }
-}
