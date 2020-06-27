@@ -1,6 +1,6 @@
 mixin videoPlayer(video = {})
     .videoPlayer#jsVideoPlayer
-        video
+        video(poster=`${video.src}.jpg`)
             //- source(src=`/${video.src}`, type="video/mp4")
             //- source(src=`/${video.src}`)
             //- aws 연결 후, 경로 수정
