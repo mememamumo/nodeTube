@@ -3,7 +3,7 @@
 
 NodeTube는 유저들이 동영상을 공유하고, 서로 교류할 수 있는 간단한 웹 사이트로, **NodeJs**와 **VanillaJs**를 사용하여 구축하였습니다.
 
-* 배포 - [링크주소](링크주소)
+* 배포 - [https://desolate-bastion-42349.herokuapp.com](https://desolate-bastion-42349.herokuapp.com)
 
 ## 사용한 기술
 * NodeJs
